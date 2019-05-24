@@ -17,14 +17,14 @@
 #'   }
 
 DiabPred <- function(genofile) {
-  snps <- as.character(read.delim("/scratch/jgonzalez/DeepLearning/results/GERA/sigSnp_0.01.txt", sep = "")$x)
+  snps <- as.character(read.delim(system.file("extdata", "snps.txt", package = "DiabPred"), sep = "")$x)
   gds <- snpgdsGetGeno(genofile, snp.id = snps, with.id = TRUE)
   matrix <- gds$genotype
   colnames(matrix) <- gds$snp.id
   rownames(matrix) <- gds$sample.id
   predictions <- h2o.mojo_predict_df(frame = matrix, 
-                                     mojo_zip_path="/scratch/jgonzalez/DeepLearning/results/Model_001/GDSModels/MOJO/model_5.zip", 
-                                     genmodel_jar_path="/scratch/jgonzalez/DeepLearning/results/Model_001/GDSModels/MOJO/h2o-genmodel.jar")
+                                     mojo_zip_path=system.file("extdata", "model.zip", package = "DiabPred"), 
+                                     genmodel_jar_path=system.file("extdata", "h2o-genmodel.jar", package = "DiabPred"))
   rownames(predictions) <- gds$sample.id
   return(predictions)
 }
