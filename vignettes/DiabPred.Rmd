@@ -3,7 +3,7 @@ title: "Type 2 diabetes prection based on genomic data with deep learning algori
 author: 
 - name: Jonatan Gonzalez
   affiliation: 
-  - &uab Universitat de Vic (UVic)
+  - &uvic Universitat de Vic (UVic)
   - &isglobal ISGlobal, Centre for Research in Environmental Epidemiology (CREAL)
   - &brge Bioinformatics Research Group in Epidemiolgy (BRGE)
 - name: Juan R. Gonzalez
