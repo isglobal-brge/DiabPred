@@ -1,0 +1,48 @@
+---
+title: "Type 2 diabetes prection based on genomic data with deep learning algorithms"
+author: 
+- name: Jonatan Gonzalez
+  affiliation: 
+  - &uab Universitat de Vic (UVic)
+  - &isglobal ISGlobal, Centre for Research in Environmental Epidemiology (CREAL)
+  - &brge Bioinformatics Research Group in Epidemiolgy (BRGE)
+- name: Juan R. Gonzalez
+  affiliation: 
+  - *isglobal
+  - *brge
+  - *uab
+  email: juanr.gonzalez@isglobal.org
+date: "`r Sys.Date()`"
+package: "`r pkg_ver('DiabPred')`"
+output: 
+  BiocStyle::html_document:
+    number_sections: true
+    toc: yes
+    fig_caption: yes
+    toc_float: true
+vignette: >
+  %\VignetteIndexEntry{Type 2 diabetes prection based on genomic data with deep learning algorithms}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "", 
+                      cache=TRUE, message = FALSE, 
+                      warning = FALSE
+                      )
+```
+
+# Purpose of this package
+Description
+
+# Getting started
+Describir los paquetes que se necesita
+
+# Create GDS from PLINK data 
+?? y si son VCFs?
+
+# Type 2 diabetes risk prediction
+
+

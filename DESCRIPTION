@@ -1,0 +1,16 @@
+Package: DiabPred
+Type: Package
+Title: Type 2 diabetes prection based on genomic data with deep learning algorithms
+Version: 0.1.2
+Authors@R: c(person("Jonatan", "Gonzalez", , "jonatan.gonzalez.r@outlook.com", role = "aut"),
+    person("Juan R.", "Gonzalez", ,"juanr.gonzalez@isglobal.org", role = c("aut", "cre")))
+Description: Implementation of a deep learning algorith to predict type 2 diabetes from genomic data.
+License: MIT license
+Depends: R (>= 3.5.0), SNPRelate (>= 1.14.0), h2o (>= 3.22.1.1)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
