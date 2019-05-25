@@ -1,5 +1,5 @@
 ---
-title: "Type 2 diabetes prection based on genomic data with deep learning algorithms"
+title: "Type 2 diabetes prediction based on genomic data with deep learning algorithms"
 author: 
 - name: Jonatan Gonzalez
   affiliation: 
