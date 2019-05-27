@@ -35,14 +35,120 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "",
 ```
 
 # Purpose of this package
-Description
+
+The main objective of this package is to offer an accurate way of predicting type 2 diabetes based on genomic data using deep learning neural networks. Said neural networks was trained on SNPs found significant when tested for association with diabetes. For the purpose of being able to make accurate predictions, all the SNPs that were used to train the neural network must be present in the GDS file used as input.
+
+The list of SNPs can be accessed to using the following code:
+
+```{r}
+# Loading list of needed SNPs
+snp.fn <- system.file("extdata", "snps.txt", package = "DiabPred")
+snps <- read.delim(snp.fn, sep = "")$x
+```
+
+```{r}
+head(snps)
+```
+
+As it can be seen it returns a vector consisting of all the SNPs that **must** be present in the GDS file.
+
 
 # Getting started
-Describir los paquetes que se necesita
+
+For the purpose of this vignette we will need the packages $SNPRelate$ and $h2o$. Former one is needed in order to preprocess the data that will serve as input for the prediction function, while the later provides the tools to predict the outcome.
+
+$h2o$ depends on the packages $jsonlite$ and $RCurl$ which should also be installed:
+
+```{r warning=FALSE, results="hide", message=FALSE}
+if (!"BiocManager" %in% rownames(installed.packages()))
+     install.packages("BiocManager")
+BiocManager::install("SNPRelate")
+
+pkgs <- c("RCurl","jsonlite")
+for (pkg in pkgs) {
+if (! (pkg %in% rownames(installed.packages()))) { install.packages(pkg) }
+}
+
+install.packages("h2o", type="source", repos="http://h2o-release.s3.amazonaws.com/h2o/rel-yates/3/R")
+```
+
+Link provided for the installation of the $h2o$ package is the latest version as of `r Sys.Date()`. Please do consult the following website to check for new releases [h2o](https://www.h2o.ai/download/#h2o).
 
 # Create GDS from PLINK data 
-?? y si son VCFs?
+
+A GDS-class object should always be used as input for the predictions. GDS object can be obtained from PLINK data as it will be demonstrated, or otherwise from VCF data which will also be included as code despite only plink files being available as test files in this package, regardless of this the output ought to be the same.
+
+```{r message=FALSE, warning=FALSE}
+library(SNPRelate)
+```
+
+The $SNPRelate$ package provides a function `snpgdsBED2GDS()` for converting a PLINK text/binary file to a GDS file:
+
+```{r message=FALSE, results='hide', warning=FALSE}
+# PLINK files included in the DiabPred package
+bed <- system.file("extdata","test.bed.gz", package = "DiabPred")
+fam <- system.file("extdata","test.fam.gz", package = "DiabPred")
+bim <- system.file("extdata","test.bim.gz", package = "DiabPred")
+```
+
+Or use your own PLINK files:
+
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+bed <- "C:/path/to/your_plink_file.bed"
+fam <- "C:/path/to/your_plink_file.fam"
+bim <- "C:/path/to/your_plink_file.bim"
+```
+
+```{r message=FALSE, warning=FALSE}
+#Convert
+snpgdsBED2GDS(bed, fam, bim, "test.gds")
+```
+
+```{r message=FALSE, warning=FALSE}
+# Summary
+snpgdsSummary("test.gds")
+```
+
+If not specified, the `test.gds` file will be created in the actual working directory.
+
+If the files needed to be converted to GDS file are VCF files, the function `snpgdsVCF2GDS()` is provided by the same package. There are two options for extracting markers from the VCF file for posterior analysis: 1. Extract and store the reference allele only for biallelic SNPs; 2. Extract and store the reference allele for all variant sites, including biallelic SNPs, multiallelic SNPs, structural variants and indels.
+
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+vcf <- "C:/path/to/your_vcf_file.vcf"
+```
+```{r message=FALSE, eval=FALSE, warning=FALSE}
+snpgdsVCF2GDS(vcf, "test.gds", method = "biallelic.only")
+```
 
 # Type 2 diabetes risk prediction
 
+Our function, which receives the same name as the package as it's its main component `DiabPred` makes use of $SNPRelate$ for the filtering and preparation of the data for the prediction, while $h2o$ is used to return them.
+
+```{r message=FALSE, warning=FALSE}
+# GDS object load
+genofile <- snpgdsOpen("test.gds")
+```
+
+```{r message=FALSE, warning=FALSE}
+# Prediction
+predictions <- DiabPred(genofile)
+```
+
+```{r message=FALSE, warning=FALSE}
+# Results
+head(predictions)
+```
+
+As it can be seen, the `DiabPred` function has a single output which is a `data.frame` consisting of 3 columns and as many rows as individuals were present in the GDS file.
+The 3 columns correspond in their respective order to: 
+
+- Diabetes prediction, 0 for non-diabetic, 1 for diabetic 
+- Probability of the individual being non-diabetic 
+- Probability of the individual being diabetic.
+
+# Session Information
+
+```{r}
+sessionInfo()
+```
 

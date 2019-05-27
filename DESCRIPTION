@@ -1,7 +1,7 @@
 Package: DiabPred
 Type: Package
-Title: Type 2 diabetes prection based on genomic data with deep learning algorithms
-Version: 0.1.2
+Title: Type 2 diabetes prediction based on genomic data with deep learning algorithms
+Version: 0.1
 Authors@R: c(person("Jonatan", "Gonzalez", , "jonatan.gonzalez.r@outlook.com", role = "aut"),
     person("Juan R.", "Gonzalez", ,"juanr.gonzalez@isglobal.org", role = c("aut", "cre")))
 Description: Implementation of a deep learning algorith to predict type 2 diabetes from genomic data.
