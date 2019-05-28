@@ -21,7 +21,7 @@
 snps
 }
 \description{
-This dataset consists on the SNPs that were used to build the deep learning model used for prediction.
+This dataset consists on the SNPs that were used to build the deep learning model used for prediction. The genome reference used for the annotation of these SNPs was hg19.
 }
 \details{
 List of SNPs used to build this package's model
