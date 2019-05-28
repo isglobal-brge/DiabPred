@@ -43,7 +43,7 @@ The list of SNPs can be accessed to using the following code:
 ```{r}
 # Loading list of needed SNPs
 snp.fn <- system.file("extdata", "snps.txt", package = "DiabPred")
-snps <- read.delim(snp.fn, sep = "")$x
+snps <- read.delim(snp.fn, sep = "")
 ```
 
 ```{r}

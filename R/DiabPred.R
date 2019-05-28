@@ -17,7 +17,7 @@
 #'   }
 
 DiabPred <- function(genofile) {
-  snps <- as.character(read.delim(system.file("extdata", "snps.txt", package = "DiabPred"), sep = "")$x)
+  snps <- as.character(read.delim(system.file("extdata", "snps.txt", package = "DiabPred"), sep = "")$snp_id)
   gds <- snpgdsGetGeno(genofile, snp.id = snps, with.id = TRUE)
   matrix <- gds$genotype
   colnames(matrix) <- gds$snp.id
