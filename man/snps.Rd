@@ -4,7 +4,16 @@
 \name{snps}
 \alias{snps}
 \title{SNP info}
-\format{An object of class \code{data.frame} with 8573 rows and 6 columns.}
+\format{A data.frame consisting of 8573 rows and 6 columns
+
+\describe{ 
+  \item{chr}{Chromosome where the SNP is located}
+  \item{snp_id}{SNP reference ID}
+  \item{chr_start}{Start position of the SNP in the chromosome}
+  \item{chr_end}{End position of the SNP in the chromosome}
+  \item{ref}{Reference allele of the SNP}
+  \item{alt}{Alternative allele of the SNP}
+  }}
 \source{
 \url{http://www.type2diabetesgenetics.org/}
 }
@@ -13,21 +22,6 @@ snps
 }
 \description{
 This dataset consists on the SNPs that were used to build the deep learning model used for prediction.
-  
-
-\describe{ 
-  \item \code{chr}{Chromosome where the SNP is located}
-  
-  \item \code{snp_id}{SNP reference ID}
-  
-  \item \code{chr_start}{Start position of the SNP in the chromosome}
-  
-  \item \code{chr_end}{End position of the SNP in the chromosome}
-  
-  \item \code{ref}{Reference allele of the SNP}
-  
-  \item \code{alt}{Alternative allele of the SNP}
-  }
 }
 \details{
 List of SNPs used to build this package's model
