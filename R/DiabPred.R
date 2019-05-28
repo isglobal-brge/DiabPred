@@ -15,6 +15,8 @@
 #'   \item \code{non.diabetic}: Probability of the individual being non-diabetic
 #'   \item \code{diabetic}: Probability of the individual being diabetic.
 #'   }
+#'   
+#' @details For the prediction to be accurate, all the SNPs that are listed in the snps file procured in this package. \link{snps}
 
 DiabPred <- function(genofile) {
   snps <- data("snps")

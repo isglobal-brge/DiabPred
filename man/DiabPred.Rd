@@ -22,4 +22,6 @@ Prediction of type 2 diabetes based on genomic data with deep learning algorithm
 }
 \details{
 The function described here makes use of a deep learning model trained using the h2o package to predict type 2 diabetes based on selected SNPs.
+
+For the prediction to be accurate, all the SNPs that are listed in the snps file procured in this package. \link{snps}
 }
