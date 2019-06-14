@@ -19,7 +19,7 @@
 #' @details For the prediction to be accurate, all the SNPs that are listed in the snps file procured in this package. \link{snps}
 
 DiabPred <- function(genofile) {
-  snps <- data("snps")
+  snps <- get(data("snps"))
   snp_list <- as.character(snps$snp_id)
   gds <- snpgdsGetGeno(genofile, snp.id = snp_list, with.id = TRUE)
   matrix <- gds$genotype
